@@ -11,7 +11,6 @@ var (
 	// UsersColumns holds the columns for the "users" table.
 	UsersColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
-		{Name: "user_id", Type: field.TypeInt, Unique: true},
 		{Name: "username", Type: field.TypeString},
 		{Name: "email", Type: field.TypeString, Unique: true},
 		{Name: "age", Type: field.TypeInt},
@@ -23,14 +22,14 @@ var (
 		PrimaryKey: []*schema.Column{UsersColumns[0]},
 		Indexes: []*schema.Index{
 			{
-				Name:    "user_user_id",
+				Name:    "user_id",
 				Unique:  false,
-				Columns: []*schema.Column{UsersColumns[1]},
+				Columns: []*schema.Column{UsersColumns[0]},
 			},
 			{
 				Name:    "user_email",
 				Unique:  false,
-				Columns: []*schema.Column{UsersColumns[3]},
+				Columns: []*schema.Column{UsersColumns[2]},
 			},
 		},
 	}

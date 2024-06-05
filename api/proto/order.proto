@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "order-service/proto";
+
+service OrderService {
+  rpc CreateOrder(CreateOrderRequest) returns (OrderResponse);
+  rpc GetOrder(GetOrderRequest) returns (OrderResponse);
+  rpc UpdateOrder(UpdateOrderRequest) returns (OrderResponse);
+}
+
+message Order {
+  int32 id = 1;
+  string title = 2;
+  string description = 3;
+  int32 user_id = 4;
+}
+
+message CreateOrderRequest {
+  Order order = 1;
+}
+
+message GetOrderRequest {
+  int32 id = 1;
+}
+
+message  UpdateOrderRequest {
+  Order order = 1;
+}
+
+message OrderResponse {
+  Order order = 1;
+  string message = 2;
+}

@@ -14,7 +14,7 @@ type User struct {
 // Fields of the User.
 func (User) Fields() []ent.Field {
 	return []ent.Field{
-		field.Int("user_id").Unique(),
+		field.Int("id").Unique(),
 		field.String("username").NotEmpty(),
 		field.String("email").NotEmpty().Unique(),
 		field.Int("age").Positive(),
@@ -29,7 +29,7 @@ func (User) Edges() []ent.Edge {
 // Indexes of thev User
 func (User) Indexes() []ent.Index {
 	return []ent.Index{
-		index.Fields("user_id"),
+		index.Fields("id"),
 		index.Fields("email"),
 	}
 }
