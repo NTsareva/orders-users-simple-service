@@ -10,7 +10,7 @@ import (
 	"google.golang.org/grpc"
 
 	"user-service/ent"
-	"user-service/proto/user-service/proto"
+	"user-service/proto"
 )
 
 type Config struct {

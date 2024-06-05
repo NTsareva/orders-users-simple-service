@@ -1,0 +1,98 @@
+package server
+
+import (
+	"context"
+	"fmt"
+	"strconv"
+
+	"go.uber.org/zap"
+
+	"order-service/ent"
+	"order-service/ent/order"
+	"order-service/proto"
+	proto2 "user-service/proto"
+)
+
+type Server struct {
+	proto.UnimplementedOrderServiceServer
+	client     *ent.Client
+	logger     *zap.Logger
+	userClient proto2.UserServiceClient
+}
+
+func (s *Server) CreateOrder(ctx context.Context, req *proto.CreateOrderRequest) (*proto.OrderResponse, error) {
+	order, err := s.client.Order.Create().SetID(strconv.Itoa(int(req.Order.Id))).
+		SetTitle(req.Order.Title).
+		SetDescription(req.Order.Description).
+		SetUserID(int(req.Order.UserId)).
+		Save(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("create order: %v", err)
+	}
+
+	orderid, err := strconv.Atoi(order.ID)
+	if err != nil {
+		return nil, fmt.Errorf("parse order id: %v", err)
+	}
+
+	return &proto.OrderResponse{Order: &proto.Order{
+		Id:          int32(orderid),
+		Title:       order.Title,
+		Description: order.Description,
+		UserId:      int32(order.UserID),
+	}, Message: "order created successfully"}, nil
+}
+
+func (s *Server) GetOrder(ctx context.Context, req *proto.GetOrderRequest) (*proto.OrderResponse, error) {
+	order, err := s.client.Order.
+		Query().
+		Where(order.ID(strconv.Itoa(int(req.Id)))).
+		Only(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("error get order: %v", err)
+	}
+
+	orderid, err := strconv.Atoi(order.ID)
+	if err != nil {
+		return nil, fmt.Errorf("error parse order id: %v", err)
+	}
+
+	return &proto.OrderResponse{Order: &proto.Order{
+		Id:          int32(orderid),
+		Title:       order.Title,
+		Description: order.Description,
+		UserId:      int32(order.UserID),
+	}, Message: "Order retrieved successfully"}, nil
+}
+
+func (s *Server) UpdateOrder(ctx context.Context, req *proto.UpdateOrderRequest) (*proto.OrderResponse, error) {
+	order, err := s.client.Order.
+		UpdateOneID(strconv.Itoa(int(req.Order.Id))).
+		SetTitle(req.Order.Title).
+		SetDescription(req.Order.Description).
+		SetUserID(int(req.Order.UserId)).
+		Save(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("error update order: %v", err)
+	}
+
+	orderId, _ := strconv.Atoi(order.ID)
+	if err != nil {
+		return nil, fmt.Errorf("error parse order id: %v", err)
+	}
+
+	return &proto.OrderResponse{Order: &proto.Order{
+		Id:          int32(orderId),
+		Title:       order.Title,
+		Description: order.Description,
+		UserId:      int32(order.UserID),
+	}, Message: "Order updated successfully"}, nil
+}
+
+func NewServer(client *ent.Client, logger *zap.Logger, userClient proto2.UserServiceClient) *Server {
+	return &Server{
+		client:     client,
+		logger:     logger,
+		userClient: userClient,
+	}
+}
