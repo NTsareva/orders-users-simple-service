@@ -1,0 +1,9 @@
+[database]
+user = "postgres"
+password = "password"
+host = "user-db"
+port = 5432
+dbname = "userdb"
+
+[server]
+port = 50051
