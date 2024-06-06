@@ -1,22 +1,22 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"net"
 
 	"github.com/BurntSushi/toml"
-	"github.com/NTsareva/orders-users-simple-service/internal/order-service/config"
-	"github.com/NTsareva/orders-users-simple-service/internal/order-service/server"
+	_ "github.com/lib/pq"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	"github.com/NTsareva/orders-users-simple-service/order-service/ent"
+	"github.com/NTsareva/orders-users-simple-service/cmd/order-service/app/server"
+	config "github.com/NTsareva/orders-users-simple-service/cmd/order-service/configs"
+	"github.com/NTsareva/orders-users-simple-service/cmd/order-service/ent"
 
-	userproto "github.com/NTsareva/orders-users-simple-service/user-service/proto"
+	userproto "github.com/NTsareva/orders-users-simple-service/cmd/user-service/proto"
 
-	orderproto "github.com/NTsareva/orders-users-simple-service/order-service/proto"
+	orderproto "github.com/NTsareva/orders-users-simple-service/cmd/order-service/proto"
 )
 
 func createUserClient(config config.Config, logger *zap.Logger) userproto.UserServiceClient {
@@ -32,7 +32,7 @@ func main() {
 	defer logger.Sync()
 
 	var config config.Config
-	if _, err := toml.DecodeFile("config/config.toml", &config); err != nil {
+	if _, err := toml.DecodeFile("configs/config.toml", &config); err != nil {
 		logger.Fatal("failed to load config", zap.Error(err))
 	}
 
@@ -43,10 +43,6 @@ func main() {
 		logger.Fatal("failed opening connection to postgres", zap.Error(err))
 	}
 	defer client.Close()
-
-	if err := client.Schema.Create(context.Background()); err != nil {
-		logger.Fatal("failed creating schema resources", zap.Error(err))
-	}
 
 	userClient := createUserClient(config, logger)
 

@@ -1,4 +1,4 @@
-package config
+package configs
 
 type Config struct {
 	Database struct {
@@ -10,9 +10,5 @@ type Config struct {
 	}
 	Server struct {
 		Port int `toml:"port"`
-	}
-	UserService struct {
-		Host string `toml:"host"`
-		Port int    `toml:"port"`
 	}
 }

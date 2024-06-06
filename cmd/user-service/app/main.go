@@ -5,22 +5,23 @@ import (
 	"net"
 
 	"github.com/BurntSushi/toml"
-	config2 "github.com/NTsareva/orders-users-simple-service/internal/config-service/config"
-	"github.com/NTsareva/orders-users-simple-service/internal/config-service/server"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 
+	"github.com/NTsareva/orders-users-simple-service/cmd/user-service/app/server"
+	config "github.com/NTsareva/orders-users-simple-service/cmd/user-service/configs"
+
 	_ "github.com/lib/pq"
 
-	"github.com/NTsareva/orders-users-simple-service/user-service/ent"
-	"github.com/NTsareva/orders-users-simple-service/user-service/proto"
+	"github.com/NTsareva/orders-users-simple-service/cmd/user-service/ent"
+	"github.com/NTsareva/orders-users-simple-service/cmd/user-service/proto"
 )
 
 func main() {
 	logger, _ := zap.NewDevelopment()
 	defer logger.Sync()
 
-	var config config2.Config
+	var config config.Config
 	if _, err := toml.DecodeFile("configs/config.toml", &config); err != nil {
 		logger.Fatal("error loading config", zap.Error(err))
 	}

@@ -6,7 +6,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/NTsareva/orders-users-simple-service/user-service/ent"
+	"github.com/NTsareva/orders-users-simple-service/cmd/user-service/ent"
 )
 
 // The UserFunc type is an adapter to allow the use of ordinary

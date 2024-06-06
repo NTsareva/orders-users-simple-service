@@ -1,4 +1,4 @@
-module github.com/NTsareva/orders-users-simple-service/user-service
+module github.com/NTsareva/orders-users-simple-service/cmd/user-service
 
 go 1.22.1
 

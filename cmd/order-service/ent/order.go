@@ -8,7 +8,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/NTsareva/orders-users-simple-service/order-service/ent/order"
+	"github.com/NTsareva/orders-users-simple-service/cmd/order-service/ent/order"
 )
 
 // Order is the model entity for the Order schema.
