@@ -5,9 +5,9 @@ WORKDIR /app
 COPY . .
 
 RUN go mod download
-RUN go build -o user-service ./cmd/main.go
+RUN go build -o user-service ./app/main.go
 
-FROM gcr.io/distroless/base-debian10
+FROM ubuntu:latest
 
 COPY --from=builder /app/user-service /app/user-service
 

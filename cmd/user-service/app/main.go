@@ -5,14 +5,14 @@ import (
 	"net"
 
 	"github.com/BurntSushi/toml"
+	config2 "github.com/NTsareva/orders-users-simple-service/internal/config-service/config"
+	"github.com/NTsareva/orders-users-simple-service/internal/config-service/server"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 
 	_ "github.com/lib/pq"
 
 	"github.com/NTsareva/orders-users-simple-service/user-service/ent"
-	config2 "github.com/NTsareva/orders-users-simple-service/user-service/internal/config"
-	"github.com/NTsareva/orders-users-simple-service/user-service/internal/server"
 	"github.com/NTsareva/orders-users-simple-service/user-service/proto"
 )
 

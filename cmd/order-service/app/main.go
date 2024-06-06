@@ -6,13 +6,13 @@ import (
 	"net"
 
 	"github.com/BurntSushi/toml"
+	"github.com/NTsareva/orders-users-simple-service/internal/order-service/config"
+	"github.com/NTsareva/orders-users-simple-service/internal/order-service/server"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
 	"github.com/NTsareva/orders-users-simple-service/order-service/ent"
-	"github.com/NTsareva/orders-users-simple-service/order-service/internal/config"
-	"github.com/NTsareva/orders-users-simple-service/order-service/internal/server"
 
 	userproto "github.com/NTsareva/orders-users-simple-service/user-service/proto"
 
@@ -32,7 +32,7 @@ func main() {
 	defer logger.Sync()
 
 	var config config.Config
-	if _, err := toml.DecodeFile("config.toml", &config); err != nil {
+	if _, err := toml.DecodeFile("config/config.toml", &config); err != nil {
 		logger.Fatal("failed to load config", zap.Error(err))
 	}
 

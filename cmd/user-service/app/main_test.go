@@ -4,11 +4,11 @@ import (
 	"context"
 	"testing"
 
+	"github.com/NTsareva/orders-users-simple-service/internal/config-service/server"
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/zap"
 
 	"github.com/NTsareva/orders-users-simple-service/user-service/ent/user"
-	"github.com/NTsareva/orders-users-simple-service/user-service/internal/server"
 	"github.com/NTsareva/orders-users-simple-service/user-service/proto"
 
 	"github.com/NTsareva/orders-users-simple-service/user-service/ent/enttest"
