@@ -7,7 +7,7 @@ RUN mkdir -p /app/user-service
 
 COPY . .
 
-COPY ./.. /app/user-service
+COPY ../.. /app/user-service
 
 RUN apt-get update && apt-get install -y git
 

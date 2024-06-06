@@ -1,4 +1,4 @@
-module orders-users-simple-service/order-service
+module github.com/NTsareva/orders-users-simple-service/order-service
 
 go 1.22.1
 
@@ -12,7 +12,6 @@ require (
 
 require (
 	ariga.io/atlas v0.19.1-0.20240203083654-5948b60a8e43 // indirect
-	github.com/NTsareva/orders-users-simple-service/user-service v0.0.0-00010101000000-000000000000 // indirect
 	github.com/agext/levenshtein v1.2.1 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
 	github.com/go-openapi/inflect v0.19.0 // indirect
@@ -27,6 +26,8 @@ require (
 	golang.org/x/sys v0.18.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240318140521-94a12d6c2237 // indirect
+	github.com/NTsareva/orders-users-simple-service/user-service v0.0.0-00010101000000-000000000000 // indirect
 )
 
 replace github.com/NTsareva/orders-users-simple-service/user-service => ../user-service
+

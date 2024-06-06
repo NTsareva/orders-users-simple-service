@@ -1,7 +1,5 @@
 
 CREATE DATABASE userdb;
-\c userdb;
-
 CREATE TABLE users (
                        id SERIAL PRIMARY KEY,
                        name VARCHAR(100) NOT NULL,
@@ -12,7 +10,6 @@ CREATE TABLE users (
 CREATE INDEX idx_users_email ON users(email);
 
 CREATE DATABASE orderdb;
-\c orderdb;
 
 CREATE TABLE orders (
                         id SERIAL PRIMARY KEY,

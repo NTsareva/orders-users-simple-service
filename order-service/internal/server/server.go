@@ -7,10 +7,10 @@ import (
 
 	"go.uber.org/zap"
 
-	"orders-users-simple-service/order-service/ent"
-	"orders-users-simple-service/order-service/ent/order"
-	"orders-users-simple-service/order-service/proto"
-	proto2 "user-service/proto"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent/order"
+	"github.com/NTsareva/orders-users-simple-service/order-service/proto"
+	proto2 "github.com/NTsareva/orders-users-simple-service/user-service/proto"
 )
 
 type Server struct {

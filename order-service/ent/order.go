@@ -4,11 +4,11 @@ package ent
 
 import (
 	"fmt"
-	"orders-users-simple-service/order-service/ent/order"
 	"strings"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent/order"
 )
 
 // Order is the model entity for the Order schema.

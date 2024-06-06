@@ -9,13 +9,12 @@ import (
 	"log"
 	"reflect"
 
-	"orders-users-simple-service/order-service/ent/migrate"
-
-	"orders-users-simple-service/order-service/ent/order"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent/migrate"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect"
 	"entgo.io/ent/dialect/sql"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent/order"
 )
 
 // Client is the client that holds all ent builders.

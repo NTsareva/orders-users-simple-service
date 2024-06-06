@@ -4,13 +4,13 @@ package enttest
 
 import (
 	"context"
-	"orders-users-simple-service/order-service/ent"
-	// required by schema hooks.
-	_ "orders-users-simple-service/order-service/ent/runtime"
 
-	"orders-users-simple-service/order-service/ent/migrate"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent"
+	// required by schema hooks.
+	_ "github.com/NTsareva/orders-users-simple-service/order-service/ent/runtime"
 
 	"entgo.io/ent/dialect/sql/schema"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent/migrate"
 )
 
 type (

@@ -1,21 +1,21 @@
-version: '3.9'
-
 services:
+
   postgres:
     image: postgres:14
     container_name: orders
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: userdb
+      POSTGRES_DB: postgres
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   user-service:
     build:
-      context: ./../../user-service
+      context: ./user-service
       dockerfile: Dockerfile
     container_name: user-service
     depends_on:
@@ -36,8 +36,6 @@ services:
     environment:
       - DATABASE_URL=postgres://postgres:password@postgres:5432/orderdb?sslmode=disable
       - USER_SERVICE_URL=user-service:50051
-    volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "50052:50052"
 

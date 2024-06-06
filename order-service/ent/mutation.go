@@ -6,12 +6,12 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"orders-users-simple-service/order-service/ent/order"
-	"orders-users-simple-service/order-service/ent/predicate"
 	"sync"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent/order"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent/predicate"
 )
 
 const (

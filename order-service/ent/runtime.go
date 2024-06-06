@@ -3,8 +3,8 @@
 package ent
 
 import (
-	"orders-users-simple-service/order-service/ent/order"
-	"orders-users-simple-service/order-service/ent/schema"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent/order"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent/schema"
 )
 
 // The init function reads all schema descriptors with runtime code

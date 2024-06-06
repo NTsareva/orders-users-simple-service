@@ -10,13 +10,13 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	"orders-users-simple-service/order-service/ent"
-	"orders-users-simple-service/order-service/internal/config"
-	"orders-users-simple-service/order-service/internal/server"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent"
+	"github.com/NTsareva/orders-users-simple-service/order-service/internal/config"
+	"github.com/NTsareva/orders-users-simple-service/order-service/internal/server"
 
-	userproto "github.com/NTsareva/orders-users-simple-service/user-service"
+	userproto "github.com/NTsareva/orders-users-simple-service/user-service/proto"
 
-	orderproto "orders-users-simple-service/order-service/proto"
+	orderproto "github.com/NTsareva/orders-users-simple-service/order-service/proto"
 )
 
 func createUserClient(config config.Config, logger *zap.Logger) userproto.UserServiceClient {

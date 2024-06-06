@@ -6,10 +6,10 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"orders-users-simple-service/order-service/ent/order"
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent/order"
 )
 
 // OrderCreate is the builder for creating a Order entity.

@@ -6,13 +6,13 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"orders-users-simple-service/order-service/ent/order"
 	"reflect"
 	"sync"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent/order"
 )
 
 // ent aliases to avoid import conflicts in user's code.

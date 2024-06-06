@@ -6,12 +6,12 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"orders-users-simple-service/order-service/ent/order"
-	"orders-users-simple-service/order-service/ent/predicate"
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent/order"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent/predicate"
 )
 
 // OrderUpdate is the builder for updating Order entities.
