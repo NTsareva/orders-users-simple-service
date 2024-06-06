@@ -5,6 +5,7 @@ go 1.22.1
 require (
 	entgo.io/ent v0.13.1
 	github.com/BurntSushi/toml v1.4.0
+	github.com/lib/pq v1.10.9
 	go.uber.org/zap v1.27.0
 	google.golang.org/grpc v1.64.0
 	google.golang.org/protobuf v1.34.1

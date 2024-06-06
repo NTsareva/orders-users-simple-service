@@ -20,6 +20,7 @@ type Server struct {
 	userClient proto2.UserServiceClient
 }
 
+// Function CreateOrder(ctx context.Context, req *proto.CreateOrderRequest) is made for order creation
 func (s *Server) CreateOrder(ctx context.Context, req *proto.CreateOrderRequest) (*proto.OrderResponse, error) {
 	order, err := s.client.Order.Create().SetID(strconv.Itoa(int(req.Order.Id))).
 		SetTitle(req.Order.Title).
@@ -43,6 +44,7 @@ func (s *Server) CreateOrder(ctx context.Context, req *proto.CreateOrderRequest)
 	}, Message: "order created successfully"}, nil
 }
 
+// Function GetOrder(ctx context.Context, req *proto.GetOrderRequest) is made for get order
 func (s *Server) GetOrder(ctx context.Context, req *proto.GetOrderRequest) (*proto.OrderResponse, error) {
 	order, err := s.client.Order.
 		Query().
@@ -65,6 +67,7 @@ func (s *Server) GetOrder(ctx context.Context, req *proto.GetOrderRequest) (*pro
 	}, Message: "Order retrieved successfully"}, nil
 }
 
+// Function UpdateOrder(ctx context.Context, req *proto.UpdateOrderRequest) is made for update order
 func (s *Server) UpdateOrder(ctx context.Context, req *proto.UpdateOrderRequest) (*proto.OrderResponse, error) {
 	order, err := s.client.Order.
 		UpdateOneID(strconv.Itoa(int(req.Order.Id))).
@@ -89,6 +92,7 @@ func (s *Server) UpdateOrder(ctx context.Context, req *proto.UpdateOrderRequest)
 	}, Message: "Order updated successfully"}, nil
 }
 
+// NewServer(client *ent.Client, logger *zap.Logger, userClient proto2.UserServiceClient) safetly implements new server
 func NewServer(client *ent.Client, logger *zap.Logger, userClient proto2.UserServiceClient) *Server {
 	return &Server{
 		client:     client,
