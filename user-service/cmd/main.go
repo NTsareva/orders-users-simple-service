@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"net"
 
@@ -11,10 +10,10 @@ import (
 
 	_ "github.com/lib/pq"
 
-	"user-service/ent"
-	config2 "user-service/internal/config"
-	"user-service/internal/server"
-	"user-service/proto"
+	"orders-users-simple-service/user-service/ent"
+	config2 "orders-users-simple-service/user-service/internal/config"
+	"orders-users-simple-service/user-service/internal/server"
+	"orders-users-simple-service/user-service/proto"
 )
 
 func main() {
@@ -33,10 +32,6 @@ func main() {
 		logger.Fatal("error connecting to the database", zap.Error(err))
 	}
 	defer client.Close()
-
-	if err := client.Schema.Create(context.Background()); err != nil {
-		logger.Fatal("error creating schema", zap.Error(err))
-	}
 
 	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", config.Database.Port))
 	if err != nil {

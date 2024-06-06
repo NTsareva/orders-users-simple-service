@@ -7,9 +7,9 @@ import (
 
 	"go.uber.org/zap"
 
-	"order-service/ent"
-	"order-service/ent/order"
-	"order-service/proto"
+	"orders-users-simple-service/order-service/ent"
+	"orders-users-simple-service/order-service/ent/order"
+	"orders-users-simple-service/order-service/proto"
 	proto2 "user-service/proto"
 )
 
@@ -92,7 +92,7 @@ func (s *Server) UpdateOrder(ctx context.Context, req *proto.UpdateOrderRequest)
 	}, Message: "Order updated successfully"}, nil
 }
 
-// NewServer(client *ent.Client, logger *zap.Logger, userClient proto2.UserServiceClient) safetly implements new server
+// NewServer(client *ent.Client, logger *zap.Logger, userClient proto2.UserServiceClient) s implements new server
 func NewServer(client *ent.Client, logger *zap.Logger, userClient proto2.UserServiceClient) *Server {
 	return &Server{
 		client:     client,

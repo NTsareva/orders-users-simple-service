@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"net"
 
@@ -10,13 +9,13 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	"order-service/ent"
-	"order-service/internal/config"
-	"order-service/internal/server"
+	"orders-users-simple-service/order-service/ent"
+	"orders-users-simple-service/order-service/internal/config"
+	"orders-users-simple-service/order-service/internal/server"
 
 	userproto "user-service/proto"
 
-	orderproto "order-service/proto"
+	orderproto "orders-users-simple-service/order-service/proto"
 )
 
 func createUserClient(config config.Config, logger *zap.Logger) userproto.UserServiceClient {
@@ -43,10 +42,6 @@ func main() {
 		logger.Fatal("failed opening connection to postgres", zap.Error(err))
 	}
 	defer client.Close()
-
-	if err := client.Schema.Create(context.Background()); err != nil {
-		logger.Fatal("failed creating schema resources", zap.Error(err))
-	}
 
 	userClient := createUserClient(config, logger)
 

@@ -3,8 +3,8 @@ package server
 import (
 	"go.uber.org/zap"
 
-	"user-service/ent"
-	"user-service/proto"
+	"orders-users-simple-service/user-service/ent"
+	"orders-users-simple-service/user-service/proto"
 )
 
 type Server struct {

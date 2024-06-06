@@ -1,4 +1,4 @@
-module user-service
+module orders-users-simple-service/user-service
 
 go 1.22.1
 

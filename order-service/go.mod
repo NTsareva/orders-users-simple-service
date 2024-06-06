@@ -1,4 +1,4 @@
-module order-service
+module orders-users-simple-service/order-service
 
 go 1.22.1
 
@@ -29,3 +29,4 @@ require (
 )
 
 replace user-service => ../user-service
+
