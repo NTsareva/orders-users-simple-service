@@ -4,7 +4,7 @@ package ent
 
 import (
 	"fmt"
-	"order-service/ent/order"
+	"orders-users-simple-service/order-service/ent/order"
 	"strings"
 
 	"entgo.io/ent"

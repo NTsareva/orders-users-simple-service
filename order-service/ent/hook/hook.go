@@ -5,7 +5,7 @@ package hook
 import (
 	"context"
 	"fmt"
-	"order-service/ent"
+	"orders-users-simple-service/order-service/ent"
 )
 
 // The OrderFunc type is an adapter to allow the use of ordinary

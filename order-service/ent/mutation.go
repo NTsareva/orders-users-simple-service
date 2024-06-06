@@ -6,8 +6,8 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"order-service/ent/order"
-	"order-service/ent/predicate"
+	"orders-users-simple-service/order-service/ent/order"
+	"orders-users-simple-service/order-service/ent/predicate"
 	"sync"
 
 	"entgo.io/ent"

@@ -3,7 +3,7 @@
 package order
 
 import (
-	"order-service/ent/predicate"
+	"orders-users-simple-service/order-service/ent/predicate"
 
 	"entgo.io/ent/dialect/sql"
 )

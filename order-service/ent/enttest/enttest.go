@@ -4,11 +4,11 @@ package enttest
 
 import (
 	"context"
-	"order-service/ent"
+	"orders-users-simple-service/order-service/ent"
 	// required by schema hooks.
-	_ "order-service/ent/runtime"
+	_ "orders-users-simple-service/order-service/ent/runtime"
 
-	"order-service/ent/migrate"
+	"orders-users-simple-service/order-service/ent/migrate"
 
 	"entgo.io/ent/dialect/sql/schema"
 )

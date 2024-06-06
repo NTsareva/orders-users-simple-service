@@ -6,7 +6,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"order-service/ent/order"
+	"orders-users-simple-service/order-service/ent/order"
 	"reflect"
 	"sync"
 

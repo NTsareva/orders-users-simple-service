@@ -9,9 +9,9 @@ import (
 	"log"
 	"reflect"
 
-	"order-service/ent/migrate"
+	"orders-users-simple-service/order-service/ent/migrate"
 
-	"order-service/ent/order"
+	"orders-users-simple-service/order-service/ent/order"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect"
