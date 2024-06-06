@@ -4,14 +4,15 @@ import (
 	"context"
 	"testing"
 
-	"github.com/NTsareva/orders-users-simple-service/internal/config-service/server"
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/zap"
 
-	"github.com/NTsareva/orders-users-simple-service/user-service/ent/user"
-	"github.com/NTsareva/orders-users-simple-service/user-service/proto"
+	"github.com/NTsareva/orders-users-simple-service/cmd/user-service/app/server"
 
-	"github.com/NTsareva/orders-users-simple-service/user-service/ent/enttest"
+	"github.com/NTsareva/orders-users-simple-service/cmd/user-service/ent/user"
+	"github.com/NTsareva/orders-users-simple-service/cmd/user-service/proto"
+
+	"github.com/NTsareva/orders-users-simple-service/cmd/user-service/ent/enttest"
 )
 
 func TestAddUser(t *testing.T) {

@@ -2,7 +2,7 @@
 user = "postgres"
 password = "password"
 host = "user-db"
-port = 5434
+port = 5432
 dbname = "userdb"
 
 [server]

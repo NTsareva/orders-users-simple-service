@@ -34,7 +34,7 @@ func main() {
 	}
 	defer client.Close()
 
-	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", config.Database.Port))
+	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", config.Server.Port))
 	if err != nil {
 		logger.Fatal("failed to listen", zap.Error(err))
 	}
