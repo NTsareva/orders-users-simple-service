@@ -1,0 +1,69 @@
+version: '3'
+
+vars:
+  user_service_image: "user-service:latest"
+  order_service_image: "order-service:latest"
+  compose_file: "docker-compose.yml"
+
+tasks:
+  lint:
+    desc: "Run linters"
+    cmds:
+      - golangci-lint run
+
+  test:
+    desc: "Run tests"
+    cmds:
+      - go test ./...
+
+  proto:
+    desc: "Generate gRPC and Protobuf code"
+    cmds:
+      - protoc --go_out=. --go-grpc_out=. --proto_path=api/proto api/proto/user.proto
+      - protoc --go_out=. --go-grpc_out=. --proto_path=api/proto api/proto/order.proto
+
+  build-user-service:
+    desc: "Build the Docker image for user-service"
+    deps:
+      - proto
+    cmds:
+      - docker build -t {{.user_service_image}} -f user-service/Dockerfile user-service
+
+  build-order-service:
+    desc: "Build the Docker image for order-service"
+    deps:
+      - proto
+    cmds:
+      - docker build -t {{.order_service_image}} -f order-service/Dockerfile order-service
+
+  build:
+    desc: "Build all Docker images"
+    deps:
+      - build-user-service
+      - build-order-service
+
+  up:
+    desc: "Start all services using docker-compose"
+    cmds:
+      - docker-compose -f {{.compose_file}} up --build
+
+  down:
+    desc: "Stop all services using docker-compose"
+    cmds:
+      - docker-compose -f {{.compose_file}} down
+
+  restart:
+    desc: "Restart all services using docker-compose"
+    cmds:
+      - task: down
+      - task: up
+
+  logs:
+    desc: "Show logs for all services"
+    cmds:
+      - docker-compose -f {{.compose_file}} logs -f
+
+  ps:
+    desc: "Show status of all services"
+    cmds:
+      - docker-compose -f {{.compose_file}} ps
