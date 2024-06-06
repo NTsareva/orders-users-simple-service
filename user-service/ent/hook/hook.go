@@ -5,7 +5,8 @@ package hook
 import (
 	"context"
 	"fmt"
-	"user-service/ent"
+
+	"github.com/NTsareva/orders-users-simple-service/user-service/ent"
 )
 
 // The UserFunc type is an adapter to allow the use of ordinary

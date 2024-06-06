@@ -7,11 +7,11 @@ import (
 	"errors"
 	"fmt"
 	"sync"
-	"user-service/ent/predicate"
-	"user-service/ent/user"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
+	"github.com/NTsareva/orders-users-simple-service/user-service/ent/predicate"
+	"github.com/NTsareva/orders-users-simple-service/user-service/ent/user"
 )
 
 const (

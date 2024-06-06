@@ -5,10 +5,10 @@ package ent
 import (
 	"fmt"
 	"strings"
-	"user-service/ent/user"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
+	"github.com/NTsareva/orders-users-simple-service/user-service/ent/user"
 )
 
 // User is the model entity for the User schema.

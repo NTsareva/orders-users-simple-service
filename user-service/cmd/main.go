@@ -10,10 +10,10 @@ import (
 
 	_ "github.com/lib/pq"
 
-	"orders-users-simple-service/user-service/ent"
-	config2 "orders-users-simple-service/user-service/internal/config"
-	"orders-users-simple-service/user-service/internal/server"
-	"orders-users-simple-service/user-service/proto"
+	"github.com/NTsareva/orders-users-simple-service/user-service/ent"
+	config2 "github.com/NTsareva/orders-users-simple-service/user-service/internal/config"
+	"github.com/NTsareva/orders-users-simple-service/user-service/internal/server"
+	"github.com/NTsareva/orders-users-simple-service/user-service/proto"
 )
 
 func main() {

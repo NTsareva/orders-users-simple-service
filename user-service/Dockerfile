@@ -2,9 +2,6 @@ FROM golang:1.22 as builder
 
 WORKDIR /app
 
-# Установите git с помощью apt-get
-RUN apt-get update && apt-get install -y git
-
 COPY . .
 
 RUN go mod download

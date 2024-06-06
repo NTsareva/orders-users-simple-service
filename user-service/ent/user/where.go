@@ -3,9 +3,8 @@
 package user
 
 import (
-	"user-service/ent/predicate"
-
 	"entgo.io/ent/dialect/sql"
+	"github.com/NTsareva/orders-users-simple-service/user-service/ent/predicate"
 )
 
 // ID filters vertices based on their ID field.

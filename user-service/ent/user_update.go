@@ -6,12 +6,12 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"user-service/ent/predicate"
-	"user-service/ent/user"
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/NTsareva/orders-users-simple-service/user-service/ent/predicate"
+	"github.com/NTsareva/orders-users-simple-service/user-service/ent/user"
 )
 
 // UserUpdate is the builder for updating User entities.

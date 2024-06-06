@@ -6,10 +6,10 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"user-service/ent/user"
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/NTsareva/orders-users-simple-service/user-service/ent/user"
 )
 
 // UserCreate is the builder for creating a User entity.

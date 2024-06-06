@@ -7,10 +7,11 @@ import (
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/zap"
 
-	"user-service/ent/enttest"
-	"user-service/ent/user"
-	"user-service/internal/server"
-	"user-service/proto"
+	"github.com/NTsareva/orders-users-simple-service/user-service/ent/user"
+	"github.com/NTsareva/orders-users-simple-service/user-service/internal/server"
+	"github.com/NTsareva/orders-users-simple-service/user-service/proto"
+
+	"github.com/NTsareva/orders-users-simple-service/user-service/ent/enttest"
 )
 
 func TestAddUser(t *testing.T) {

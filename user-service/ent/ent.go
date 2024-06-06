@@ -8,11 +8,11 @@ import (
 	"fmt"
 	"reflect"
 	"sync"
-	"user-service/ent/user"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
+	"github.com/NTsareva/orders-users-simple-service/user-service/ent/user"
 )
 
 // ent aliases to avoid import conflicts in user's code.
