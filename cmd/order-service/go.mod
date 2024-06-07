@@ -5,7 +5,6 @@ go 1.22.1
 require (
 	entgo.io/ent v0.13.1
 	github.com/BurntSushi/toml v1.4.0
-	github.com/NTsareva/orders-users-simple-service/cmd/user-service v0.0.0-00010101000000-000000000000
 	github.com/lib/pq v1.10.9
 	go.uber.org/zap v1.27.0
 	google.golang.org/grpc v1.64.0
@@ -14,6 +13,7 @@ require (
 
 require (
 	ariga.io/atlas v0.19.1-0.20240203083654-5948b60a8e43 // indirect
+	github.com/NTsareva/orders-users-simple-service/cmd/user-service v1.0.0
 	github.com/agext/levenshtein v1.2.1 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
 	github.com/go-openapi/inflect v0.19.0 // indirect
@@ -31,3 +31,4 @@ require (
 )
 
 //replace github.com/NTsareva/orders-users-simple-service/cmd/user-service => ../user-service
+replace github.com/NTsareva/orders-users-simple-service/cmd/user-service => git@github.com:NTsareva/orders-users-simple-service.git/cmd/user-service

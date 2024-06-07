@@ -6,7 +6,6 @@ WORKDIR /app
 
 COPY ./cmd/order-service/go.mod ./cmd/order-service/go.sum ./
 
-RUN echo 'replace github.com/NTsareva/orders-users-simple-service/cmd/user-service => ../user-service' >> ./go.mod
 
 RUN go mod download
 
