@@ -30,4 +30,4 @@ require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240318140521-94a12d6c2237 // indirect
 )
 
-replace github.com/NTsareva/orders-users-simple-service/cmd/user-service => ../user-service
+//replace github.com/NTsareva/orders-users-simple-service/cmd/user-service => ../user-service

@@ -1,13 +1,21 @@
 FROM golang:1.22 AS builder
+
+ARG USE_REPLACEMENT=true
+
 WORKDIR /app
 
-COPY ./cmd/order-service/ ./
-RUN go mod download
-RUN go build -o order-service ./app/main.go
+COPY ./cmd/order-service/go.mod ./cmd/order-service/go.sum ./
 
+RUN echo 'replace github.com/NTsareva/orders-users-simple-service/cmd/user-service => ../user-service' >> ./go.mod
+
+RUN go mod download
+
+COPY ./cmd/order-service/ ./
+RUN go build -o order-service ./app/main.go
 
 FROM debian:bullseye-slim
 WORKDIR /app
+RUN apt-get update && apt-get install -y libc6
 
 COPY --from=builder /app/order-service ./
 COPY ./cmd/order-service/configs /app/configs
