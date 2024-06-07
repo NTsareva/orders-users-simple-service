@@ -3,7 +3,6 @@ package server
 import (
 	"context"
 	"fmt"
-	"strconv"
 
 	"go.uber.org/zap"
 
@@ -23,7 +22,7 @@ type Server struct {
 
 // Function CreateOrder(ctx context.Context, req *proto.CreateOrderRequest) is made for order creation
 func (s *Server) CreateOrder(ctx context.Context, req *proto.CreateOrderRequest) (*proto.OrderResponse, error) {
-	order, err := s.client.Order.Create().SetID(strconv.Itoa(int(req.Order.Id))).
+	order, err := s.client.Order.Create().
 		SetTitle(req.Order.Title).
 		SetDescription(req.Order.Description).
 		SetUserID(int(req.Order.UserId)).
@@ -32,10 +31,7 @@ func (s *Server) CreateOrder(ctx context.Context, req *proto.CreateOrderRequest)
 		return nil, fmt.Errorf("create order: %v", err)
 	}
 
-	orderid, err := strconv.Atoi(order.ID)
-	if err != nil {
-		return nil, fmt.Errorf("parse order id: %v", err)
-	}
+	orderid := order.ID
 
 	return &proto.OrderResponse{Order: &proto.Order{
 		Id:          int32(orderid),
@@ -49,16 +45,13 @@ func (s *Server) CreateOrder(ctx context.Context, req *proto.CreateOrderRequest)
 func (s *Server) GetOrder(ctx context.Context, req *proto.GetOrderRequest) (*proto.OrderResponse, error) {
 	order, err := s.client.Order.
 		Query().
-		Where(order.ID(strconv.Itoa(int(req.Id)))).
+		Where(order.ID(int(req.Id))).
 		Only(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("error get order: %v", err)
 	}
 
-	orderid, err := strconv.Atoi(order.ID)
-	if err != nil {
-		return nil, fmt.Errorf("error parse order id: %v", err)
-	}
+	orderid := order.ID
 
 	return &proto.OrderResponse{Order: &proto.Order{
 		Id:          int32(orderid),
@@ -71,7 +64,7 @@ func (s *Server) GetOrder(ctx context.Context, req *proto.GetOrderRequest) (*pro
 // Function UpdateOrder(ctx context.Context, req *proto.UpdateOrderRequest) is made for update order
 func (s *Server) UpdateOrder(ctx context.Context, req *proto.UpdateOrderRequest) (*proto.OrderResponse, error) {
 	order, err := s.client.Order.
-		UpdateOneID(strconv.Itoa(int(req.Order.Id))).
+		UpdateOneID(int(req.Order.Id)).
 		SetTitle(req.Order.Title).
 		SetDescription(req.Order.Description).
 		SetUserID(int(req.Order.UserId)).
@@ -80,10 +73,7 @@ func (s *Server) UpdateOrder(ctx context.Context, req *proto.UpdateOrderRequest)
 		return nil, fmt.Errorf("error update order: %v", err)
 	}
 
-	orderId, _ := strconv.Atoi(order.ID)
-	if err != nil {
-		return nil, fmt.Errorf("error parse order id: %v", err)
-	}
+	orderId := order.ID
 
 	return &proto.OrderResponse{Order: &proto.Order{
 		Id:          int32(orderId),

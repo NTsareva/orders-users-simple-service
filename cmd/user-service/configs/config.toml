@@ -1,9 +1,9 @@
 [database]
 user = "postgres"
-password = "password"
-host = "user-db"
+password = "postgres"
+host = "localhost"
 port = 5432
-dbname = "userdb"
+dbname = "orders-service"
 
 [server]
 port = 50051

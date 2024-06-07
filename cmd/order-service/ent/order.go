@@ -15,7 +15,7 @@ import (
 type Order struct {
 	config `json:"-"`
 	// ID of the ent.
-	ID string `json:"id,omitempty"`
+	ID int `json:"id,omitempty"`
 	// Title holds the value of the "title" field.
 	Title string `json:"title,omitempty"`
 	// Description holds the value of the "description" field.
@@ -30,9 +30,9 @@ func (*Order) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case order.FieldUserID:
+		case order.FieldID, order.FieldUserID:
 			values[i] = new(sql.NullInt64)
-		case order.FieldID, order.FieldTitle, order.FieldDescription:
+		case order.FieldTitle, order.FieldDescription:
 			values[i] = new(sql.NullString)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -50,11 +50,11 @@ func (o *Order) assignValues(columns []string, values []any) error {
 	for i := range columns {
 		switch columns[i] {
 		case order.FieldID:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field id", values[i])
-			} else if value.Valid {
-				o.ID = value.String
+			value, ok := values[i].(*sql.NullInt64)
+			if !ok {
+				return fmt.Errorf("unexpected type %T for field id", value)
 			}
+			o.ID = int(value.Int64)
 		case order.FieldTitle:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field title", values[i])

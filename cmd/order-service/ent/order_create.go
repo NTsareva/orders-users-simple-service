@@ -46,8 +46,8 @@ func (oc *OrderCreate) SetNillableUserID(i *int) *OrderCreate {
 }
 
 // SetID sets the "id" field.
-func (oc *OrderCreate) SetID(s string) *OrderCreate {
-	oc.mutation.SetID(s)
+func (oc *OrderCreate) SetID(i int) *OrderCreate {
+	oc.mutation.SetID(i)
 	return oc
 }
 
@@ -132,12 +132,9 @@ func (oc *OrderCreate) sqlSave(ctx context.Context) (*Order, error) {
 		}
 		return nil, err
 	}
-	if _spec.ID.Value != nil {
-		if id, ok := _spec.ID.Value.(string); ok {
-			_node.ID = id
-		} else {
-			return nil, fmt.Errorf("unexpected Order.ID type: %T", _spec.ID.Value)
-		}
+	if _spec.ID.Value != _node.ID {
+		id := _spec.ID.Value.(int64)
+		_node.ID = int(id)
 	}
 	oc.mutation.id = &_node.ID
 	oc.mutation.done = true
@@ -147,7 +144,7 @@ func (oc *OrderCreate) sqlSave(ctx context.Context) (*Order, error) {
 func (oc *OrderCreate) createSpec() (*Order, *sqlgraph.CreateSpec) {
 	var (
 		_node = &Order{config: oc.config}
-		_spec = sqlgraph.NewCreateSpec(order.Table, sqlgraph.NewFieldSpec(order.FieldID, field.TypeString))
+		_spec = sqlgraph.NewCreateSpec(order.Table, sqlgraph.NewFieldSpec(order.FieldID, field.TypeInt))
 	)
 	if id, ok := oc.mutation.ID(); ok {
 		_node.ID = id
@@ -213,6 +210,10 @@ func (ocb *OrderCreateBulk) Save(ctx context.Context) ([]*Order, error) {
 					return nil, err
 				}
 				mutation.id = &nodes[i].ID
+				if specs[i].ID.Value != nil && nodes[i].ID == 0 {
+					id := specs[i].ID.Value.(int64)
+					nodes[i].ID = int(id)
+				}
 				mutation.done = true
 				return nodes[i], nil
 			})

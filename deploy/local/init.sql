@@ -1,17 +1,18 @@
+CREATE DATABASE "userdb";
+CREATE DATABASE "orderdb";
 
-CREATE DATABASE userdb;
-CREATE TABLE users (
+CREATE TABLE "users" (
                        id SERIAL PRIMARY KEY,
-                       name VARCHAR(100) NOT NULL,
+                       username VARCHAR(100) NOT NULL,
                        email VARCHAR(100) NOT NULL UNIQUE,
                        age INTEGER NOT NULL CHECK (age > 0)
 );
 
-CREATE INDEX idx_users_email ON users(email);
+CREATE INDEX "idx_users_email" ON users(email);
 
-CREATE DATABASE orderdb;
 
-CREATE TABLE orders (
+
+CREATE TABLE "orders" (
                         id SERIAL PRIMARY KEY,
                         title VARCHAR(200) NOT NULL,
                         description TEXT NOT NULL,

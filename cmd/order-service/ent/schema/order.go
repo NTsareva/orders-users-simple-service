@@ -14,7 +14,9 @@ type Order struct {
 // Fields of the Order.
 func (Order) Fields() []ent.Field {
 	return []ent.Field{
-		field.String("id").Unique(),
+		field.Int("id").Unique().Immutable().
+			StorageKey("id").
+			StructTag(`json:"id,omitempty"`),
 		field.String("title").NotEmpty(),
 		field.String("description").NotEmpty(),
 		field.Int("user_id").Positive().Default(0),

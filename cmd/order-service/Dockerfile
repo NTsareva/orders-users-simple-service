@@ -1,28 +1,20 @@
-FROM golang:1.22-alpine as builder
+FROM golang:1.22 as builder
 
 WORKDIR /app
 
-RUN apk add --no-cache git
+RUN mkdir -p /app/user-service
 
-COPY cmd/order-service/go.mod cmd/order-service/go.sum ./
+COPY . .
 
-RUN go mod download
+COPY ../user-service /app/user-service
 
-COPY cmd/order-service/ .
+RUN apt-get update && apt-get install -y git
 
-RUN go build -o order-service ./app/main.go
+RUN go mod tidy
+RUN go build -o order-service ./cmd/main.go
 
-FROM alpine:latest
-
-WORKDIR /app
-
-RUN apk --no-cache add ca-certificates \
-    && wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
-    && wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.34-r0/glibc-2.34-r0.apk \
-    && apk add glibc-2.34-r0.apk \
-    && rm -rf glibc-2.34-r0.apk
+FROM gcr.io/distroless/base-debian10
 
 COPY --from=builder /app/order-service /app/order-service
-COPY cmd/order-service/configs /app/configs
 
 CMD ["/app/order-service"]

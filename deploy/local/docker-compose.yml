@@ -1,50 +1,43 @@
-version: '3.9'
-
 services:
+
   postgres:
     image: postgres:14
-    container_name: orders
+    container_name: orders-service
     environment:
+      POSTGRES_DB: orders-service
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./deploy/local/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   user-service:
     build:
-      context: ./cmd/user-service
-      dockerfile: ./cmd/user-service/Dockerfile
+      context: ./../../cmd/user-service
+      dockerfile: Dockerfile
     container_name: user-service
     depends_on:
       - postgres
     environment:
-      - DATABASE_URL=postgres://postgres:postgres@orders:5432/userdb?sslmode=disable
-      - CONFIG_PATH=/app/configs/config.toml
+      - DATABASE_URL=postgres://postgres:password@postgres:5432/userdb?sslmode=disable
     ports:
       - "50051:50051"
-    volumes:
-      - ./cmd/user-service/configs:/app/configs
 
   order-service:
     build:
-      context: ./../../cmd/order-service
-      dockerfile: ./Dockerfile
+      context: ./../../order-service
+      dockerfile: Dockerfile
     container_name: order-service
     depends_on:
       - postgres
       - user-service
     environment:
-      - DATABASE_URL=postgres://postgres:postgres@orders:5432/orderdb?sslmode=disable
+      - DATABASE_URL=postgres://postgres:password@postgres:5432/orderdb?sslmode=disable
       - USER_SERVICE_URL=user-service:50051
-      - CONFIG_PATH=/app/configs/config.toml
     ports:
       - "50052:50052"
-    volumes:
-      - ./cmd/order-service/configs:/app/configs
 
 volumes:
   postgres_data:
