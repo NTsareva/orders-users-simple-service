@@ -6,11 +6,11 @@ import (
 
 	"go.uber.org/zap"
 
-	"github.com/NTsareva/orders-users-simple-service/cmd/order-service/ent"
-	"github.com/NTsareva/orders-users-simple-service/cmd/order-service/ent/order"
-	"github.com/NTsareva/orders-users-simple-service/cmd/order-service/proto"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent/order"
+	"github.com/NTsareva/orders-users-simple-service/order-service/proto"
 
-	proto2 "github.com/NTsareva/orders-users-simple-service/cmd/user-service/proto"
+	proto2 "github.com/NTsareva/orders-users-simple-service/user-service/proto"
 )
 
 type Server struct {
@@ -80,7 +80,7 @@ func (s *Server) UpdateOrder(ctx context.Context, req *proto.UpdateOrderRequest)
 		Title:       order.Title,
 		Description: order.Description,
 		UserId:      int32(order.UserID),
-	}, Message: "Order updated successfully"}, nil
+	}, Message: "Order updated Ysuccessfully"}, nil
 }
 
 // NewServer(client *ent.Client, logger *zap.Logger, userClient proto2.UserServiceClient) s implements new server

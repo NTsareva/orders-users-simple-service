@@ -6,7 +6,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/NTsareva/orders-users-simple-service/cmd/order-service/ent"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent"
 )
 
 // The OrderFunc type is an adapter to allow the use of ordinary

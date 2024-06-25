@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/NTsareva/orders-users-simple-service/cmd/order-service/ent/order"
-	"github.com/NTsareva/orders-users-simple-service/cmd/order-service/ent/predicate"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent/order"
+	"github.com/NTsareva/orders-users-simple-service/order-service/ent/predicate"
 )
 
 // OrderDelete is the builder for deleting a Order entity.
